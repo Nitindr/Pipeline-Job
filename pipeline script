@@ -27,7 +27,6 @@ stages {
     echo "THIS IS TEST STAGE"
     sh '''
           sleep 5
-          exit 2
        '''
        }
      }
