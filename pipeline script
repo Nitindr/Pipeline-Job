@@ -1,0 +1,35 @@
+pipeline { 
+agent none;
+stages {
+
+   stage ("BUILD") {
+   steps {
+   echo "THIS IS BUILD STAGE"
+     sh '''
+         sleep 5
+         exit 0
+        '''
+          }
+        }
+        
+   stage ("DEPLOY") {
+   steps {
+   echo "THIS IS DEPLOY STAGE"
+   sh '''
+      sleep 5
+      exit 1
+      '''
+      }
+    }
+    
+    stage ("TEST") {
+    echo "THIS IS TEST STAGE"
+    sh '''
+          sleep 5
+          exit 2
+       '''
+       }
+     }
+  }
+}
+    
