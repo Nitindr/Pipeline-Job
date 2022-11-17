@@ -23,6 +23,7 @@ stages {
     }
     
     stage ("TEST") {
+    steps {
     echo "THIS IS TEST STAGE"
     sh '''
           sleep 5
