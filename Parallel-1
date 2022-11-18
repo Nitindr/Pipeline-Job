@@ -1,0 +1,47 @@
+pipeline { 
+agent any;
+stages {
+
+   stage ("BUILD") {
+   agent { label 'master' }
+   steps {
+   echo "THIS IS BUILD STAGE"
+     sh '''
+         sleep 5
+         exit 0
+        '''
+          }
+        }
+        
+   stage ("PARALLEL TEST") {
+   parallel {
+   stage ("TEST ON CHROME") {
+   steps {
+   echo "This is a test on CHROME"
+   sh '''
+      sleep 5
+      '''
+         }
+	  }
+   stage ("TEST ON FIREFOX") {
+   steps {
+   echo "This is a test on FIREFOX"
+   sh '''
+      sleep 5
+      '''
+         }
+	  }
+    }
+  }
+    
+    stage ("DEPLOY") {
+    agent { label 'slave2' }
+    steps {
+    echo "THIS IS DEPLOY STAGE"
+    sh '''
+          sleep 5
+       '''
+       }
+     }
+  }
+}
