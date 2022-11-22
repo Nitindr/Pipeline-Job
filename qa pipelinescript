@@ -17,7 +17,7 @@ stages {
    
    stage ("2nd STAGE") {
    agent any;
-     step {
+   steps {
    echo "$JOB_NAME"
    sh '''
     sleep 3
@@ -27,7 +27,8 @@ stages {
      
      stage ("3rd STAGE") {
      agent { "label slave01" }
-     step {
+     steps {
+     echo " this is 3rd stage"
       sh '''
          df -h
          '''
@@ -36,7 +37,8 @@ stages {
         
      stage ("4th STAGE") {
      agent any;
-     step {
+     steps {
+     echo "this is 4th stage"
      sh '''
        ps -ef
         '''
