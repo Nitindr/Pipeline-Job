@@ -1,0 +1,46 @@
+pipeline { 
+agent none;
+stages {
+
+ stage ("1 STAGE") {
+ agent any;
+ parameters {
+  string defaultValue: 'parameter', name: 'parameter1', trim: true
+}
+ steps {
+ echo "%parameter1%"
+ sh ''' 
+ sleep 3
+    '''
+    }
+   }
+   
+   stage ("2nd STAGE") {
+   agent any;
+     step {
+   echo "$JOB_NAME"
+   sh '''
+    sleep 3
+      '''
+      }
+     }
+     
+     stage ("3rd STAGE") {
+     agent { "label slave01" }
+     step {
+      sh '''
+         df -h
+         '''
+         }
+        } 
+        
+     stage ("4th STAGE") {
+     agent any;
+     step {
+     sh '''
+       ps -ef
+        '''
+        }
+       }
+      }
+     }
