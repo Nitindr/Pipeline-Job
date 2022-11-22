@@ -1,12 +1,12 @@
 pipeline { 
 agent none;
+ parameters {
+  string defaultValue: 'parameter', name: 'parameter1', trim: true
+}
 stages {
 
  stage ("1 STAGE") {
  agent any;
- parameters {
-  string defaultValue: 'parameter', name: 'parameter1', trim: true
-}
  steps {
  echo "%parameter1%"
  sh ''' 
@@ -26,7 +26,7 @@ stages {
      }
      
      stage ("3rd STAGE") {
-     agent { "label slave01" }
+     agent { "label slave1" }
      steps {
      echo " this is 3rd stage"
       sh '''
