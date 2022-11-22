@@ -26,7 +26,7 @@ stages {
      }
      
      stage ("3rd STAGE") {
-     agent {"slave1"};
+     agent "slave1";
      steps {
      echo " this is 3rd stage"
       sh '''
